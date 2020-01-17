@@ -1,0 +1,1 @@
+print("Number of chickens that can stand on their own heads:", 100.3 - 50 * 2 % 5)
