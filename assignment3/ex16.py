@@ -22,12 +22,14 @@ line3 = input("3: ")
 
 print("I'm...")
 
-target.write(line1)
-target.write("\n")
-target.write(line2)
-target.write("\n")
-target.write(line3)
-target.write("\n")
+#target.write(line1)
+#target.write("\n")
+#target.write(line2)
+#target.write("\n")
+#target.write(line3)
+#target.write("\n")
+
+target.write(f"{line1}\n{line2}\n{line3}\n")
 
 print("And finally, we close it.")
 target.close()
