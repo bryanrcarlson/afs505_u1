@@ -36,6 +36,7 @@ my_function(my_function("one", "number"), "string, actually")
 
 def a_function(arg1, arg2, arg3):
     print(arg1, arg2, arg3, sep = ", ")
+
 var1 = 10
 var2 = 20
 a_function(var1, var2, var1 + var2)
