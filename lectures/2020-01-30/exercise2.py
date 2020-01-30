@@ -16,7 +16,7 @@ def print_txt_stats(argv):
 
         line = fileHandler.readline()
 
-    print(f"{char_count} {word_count} {line_count}")
+    print(f"{line_count} {word_count} {char_count} {filePath} ")
 
 
 print_txt_stats(argv)
