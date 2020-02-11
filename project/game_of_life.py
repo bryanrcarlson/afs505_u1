@@ -2,9 +2,9 @@ from sys import argv
 import copy
 
 class Board(object):
-    def __init__(self, size):
-        self.nrow = size
-        self.ncol = size
+    def __init__(self, numberRows, numberColumns):
+        self.nrow = numberRows
+        self.ncol = numberColumns
         self.grid = None
 
     def BuildGrid(self):
@@ -123,8 +123,8 @@ def ParseCellArg(cellStr):
             
 def main(argv):
     # Build the board and grid
-    size = int(argv[1])
-    board = Board(size)
+    ticks = int(argv[1])
+    board = Board(30, 80)
     board.BuildGrid()
 
     # Set initial conditions
@@ -136,7 +136,7 @@ def main(argv):
     board.PrintGrid()
 
     stepCount = 0
-    while(stepCount < 50):
+    while(stepCount < ticks):
         board.Step()
         stepCount += 1
 
