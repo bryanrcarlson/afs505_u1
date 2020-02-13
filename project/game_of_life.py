@@ -72,47 +72,20 @@ class GameOfLife(object):
         :return: An int count of the number of active neighbors to given cell (0-8)
         :rtype: int
         """
-
         neighbors = 0
-        #NW
-        if((row > 0) & (col > 0)):
-            if(self.grid[row-1][col-1] == True):
-                neighbors += 1
-        
-        #N
-        if(row > 0):
-            if(self.grid[row-1][col] == True):
-                neighbors += 1
 
-        #NE
-        if((row > 0) & (col < (self.ncol-1))):
-            if(self.grid[row-1][col+1] == True):
-                neighbors += 1
-        
-        #E
-        if(col < (self.ncol-1)):
-            if(self.grid[row][col+1] == True):
-                neighbors += 1
+        row_range = [row-1,row,row+1]
+        col_range = [col-1,col,col+1]
 
-        #SE
-        if((row < (self.nrow-1)) & (col < (self.ncol-1))):
-            if(self.grid[row+1][col+1] == True):
-                neighbors += 1
-        
-        #S
-        if(row < (self.nrow-1)):
-            if(self.grid[row+1][col] == True):
-                neighbors += 1
-
-        #SW
-        if((row < (self.nrow-1)) & (col > 0)):
-            if(self.grid[row+1][col-1] == True):
-                neighbors += 1
-
-        #W
-        if(col > 0):
-            if(self.grid[row][col-1] == True):
-                neighbors += 1
+        # I don't like allowing exceptions as part of logic, but this is more maintainable than manually checking each edge case (as I did before)
+        for neighbor_row in row_range:
+            for neighbor_col in col_range:
+                if((neighbor_row != row) | (neighbor_col != col)):
+                    try:
+                        neighbors += int(self.grid[neighbor_row][neighbor_col])
+                    except:
+                        # Assume edge cell
+                        pass
 
         return neighbors
 
