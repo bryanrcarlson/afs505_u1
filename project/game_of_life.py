@@ -112,7 +112,7 @@ class GameOfLife(object):
                 nextGrid[row][col] = False
 
     def step(self):
-        """moves the simulation forward a single tick by updating all cells in the grid and prints the updated grid
+        """moves the simulation forward a single tick by updating all cells in the grid
         """
 
         nextGrid = copy.deepcopy(self.grid)
@@ -122,14 +122,19 @@ class GameOfLife(object):
                 neighbors = self.count_neighbors(row, col)
                 self.switch_cell(row, col, neighbors, nextGrid)
         self.grid = copy.deepcopy(nextGrid)
-        self.print_grid()
 
-    def print_grid(self):
+    def print_grid(self, step_number):
         """prints the grid to stdout representing active cells as "X" and inactive as "-"
+
+        :param step_number: The step/tick of the simulation
+        :type step_number: int
         """
 
         if self.grid == None:
             raise Exception("Grid not initialized")
+
+        print(f"Step: {step_number}")
+
         for row in self.grid:
             for cell in row:
                 if cell:
@@ -178,11 +183,12 @@ def main(argv):
         cell = parse_cell_arg(argv[i])
         board.activate_cell(cell["row"], cell["col"])
         i += 1
-    board.print_grid()
 
-    stepCount = 0
-    while(stepCount < ticks):
+    stepCount = 1
+    board.print_grid(stepCount)
+    while(stepCount <= ticks):
         board.step()
+        board.print_grid(stepCount)
         stepCount += 1
 
 if __name__ == "__main__":
