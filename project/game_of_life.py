@@ -1,9 +1,16 @@
 """Script to run Conway's Game of Life
 
 .. module:: game_of_life
-    :synopsis: project assignment for WSU AFS505 unit 1
+    :platform: Linux, Windows
+    :synopsis: project assignment for WSU AFS505 unit 1. Takes 1 to many 
+        command line arguments; arg 1 is to specify number of steps the 
+        simulation takes followed by any number of "#:#" strings to specify 
+        initial active cells
 
-.. moduleauthor:: Bryan Carlson
+.. moduleauthor:: Bryan Carlson <bryan.carlson@usda.gov>
+
+.. modulereviewer:: Lana Cohen
+
 """
 
 from sys import argv
@@ -63,6 +70,7 @@ class GameOfLife(object):
         :param col: col number of cell for which neighbors are counted, 1-ncol
         :type col: int
         :return: An int count of the number of active neighbors to given cell (0-8)
+        :rtype: int
         """
 
         neighbors = 0
@@ -144,7 +152,7 @@ class GameOfLife(object):
         self.print_grid()
 
     def print_grid(self):
-        """prints the grid to stdout representing active cells as "*" and inactive as "-"
+        """prints the grid to stdout representing active cells as "X" and inactive as "-"
         """
 
         if self.grid == None:
@@ -152,7 +160,7 @@ class GameOfLife(object):
         for row in self.grid:
             for cell in row:
                 if cell:
-                    print("*", end = "")
+                    print("X", end = "")
                 else:
                     print("-", end="")
                     
@@ -162,6 +170,7 @@ def parse_cell_arg(cellStr):
     """Takes a string in "#:#" format and converts it to a dictionary
 
     :return: A dictionary of {"row":int, "col":int} where row is number to left of ":" and col is number to right of ":" in cellStr
+    :rtype: A dictionary in form {"row":int, "col":int}
     """
 
     dims = cellStr.split(":")
